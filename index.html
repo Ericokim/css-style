@@ -3,13 +3,169 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#1da1f2",
+              footer: "#f542e0",
+              borderColor: "#45f542",
+            },
+            spacing: {
+              128: "32rem",
+            },
+            fontFamily: {
+              fancy: ["Comic Sans MS", "cursive"],
+            },
+            fontSize: {
+              xxl: ["2.5rem", { lineHeight: "3rem" }],
+              h1: ["2.5rem", { fontWeight: "700" }],
+              p: ["1.5rem", { fontWeight: "200" }],
+            },
+            borderRadius: {
+              xl2: "1.5rem",
+            },
+            boxShadow: {
+              glow: "0 0 20px #1da1f2",
+            },
+            opacity: {
+              15: "0.15",
+            },
+            zIndex: {
+              999: "999",
+            },
+            screens: {
+              xxl: "1600px",
+            },
+            maxWidth: {
+              "8xl": "90rem",
+            },
+            minWidth: {
+              64: "16rem",
+            },
+            width: {
+              128: "32rem",
+            },
+            height: {
+              128: "32rem",
+            },
+            transitionDuration: {
+              4000: "4000ms",
+            },
+            transitionTimingFunction: {
+              "bounce-slow": "cubic-bezier(.28,.84,.42,1)",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+            },
+            letterSpacing: {
+              widest2: ".3em",
+            },
+            lineHeight: {
+              extra: "4rem",
+            },
+            scale: {
+              175: "1.75",
+            },
+            rotate: {
+              25: "25deg",
+            },
+            translate: {
+              "1/8": "12.5%",
+            },
+            skew: {
+              25: "25deg",
+            },
+            aspectRatio: {
+              portrait: "3 / 4",
+            },
+            flex: {
+              2: "2 2 0%",
+            },
+            gridTemplateColumns: {
+              layout: "200px 1fr",
+            },
+            gap: {
+              18: "4.5rem",
+            },
+            order: {
+              5: "5",
+            },
+            keyframes: {
+              wiggle: {
+                "0%, 100%": { transform: "rotate(-3deg)" },
+                "50%": { transform: "rotate(3deg)" },
+              },
+              bounceRight: {
+                "0%, 100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(20px)" }, // Adjust the distance as needed
+              },
+              bounce: {
+                "0%, 100%": {
+                  transform: "translateY(-25%)",
+                  animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+                },
+                "50%": {
+                  transform: "none",
+                  animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+                },
+              },
+            },
+            animation: {
+              wiggle: "wiggle 1s ease-in-out infinite",
+              bounceRight: "bounceRight 1s ease-in-out infinite",
+              bounce: "bounce 1s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <title>Tailwind Layout</title>
   </head>
-  <body>
-    <main>
-      <button></button>
-      <div class="shadow"></div>
-    </main>
+  <body class="m-0 p-0">
+    <div class="relative flex flex-col min-h-screen">
+      <!-- Navbar -->
+      <nav class="w-full bg-brand h-16 flex items-center px-4">
+        <h1 class="text-h1">Nav</h1>
+      </nav>
+
+      <!-- Main content -->
+      <div class="flex flex-col md:flex-row flex-1 gap-2 p-2">
+        <aside
+          class="border-2 border-borderColor rounded-md flex items-center justify-center w-full md:w-1/4 h-24 md:h-auto"
+        >
+          <button
+            class="text-p shadow-md bg-green-500 text-white border-none h-[100px] w-[100px] rounded-[50%] cursor-pointer hover:animate-bounce hover:bg-green-600 hover:scale-100"
+          >
+            Left
+          </button>
+        </aside>
+        <section
+          class="border-2 border-borderColor rounded-md flex items-center justify-center w-full md:flex-1 h-24 md:h-auto"
+        >
+          <button
+            class="text-p shadow-md bg-blue-500 text-white border-none h-[100px] w-[100px] rounded-[50%] cursor-pointer hover:animate-wiggle hover:bg-blue-600 hover:scale-100"
+          >
+            Center
+          </button>
+        </section>
+        <aside
+          class="border-2 border-borderColor rounded-md flex flex-col gap-4 items-center justify-center w-full md:w-1/4 h-24 md:h-auto"
+        >
+          <button
+            class="text-p shadow-md bg-red-500 text-white border-none h-[100px] w-[100px] rounded-[50%] cursor-pointer hover:animate-bounceRight hover:bg-pink-600 hover:scale-100"
+          >
+            Right
+          </button>
+        </aside>
+      </div>
+
+      <!-- Footer -->
+      <footer class="h-16 bg-footer flex items-center justify-center">
+        <p class="text-p">Footer</p>
+      </footer>
+    </div>
   </body>
 </html>
