@@ -7,43 +7,41 @@
     <title>Carousel</title>
   </head>
   <body>
-    <main class="h-screen flex justify-center items-center flex-col space-y-4">
-      <div
-        id="carousel"
-        class="flex space-x-2 transition duration-500 ease-in-out"
-      >
-        <img
-          id="1"
-          src="https://images.unsplash.com/photo-1756474215990-a18a9a0521d5?q=80&w=164&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="image-1"
-          class="w-full flex-shrink-0 object-contain"
-        />
-        <img
-          id="2"
-          src="https://images.unsplash.com/photo-1756474215831-4e5f8309c6bc?q=80&w=164&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="image-2"
-          class="w-full flex-shrink-0 object-contain"
-        />
-        <img
-          id="3"
-          src="https://images.unsplash.com/photo-1756474215958-f0c2a31eddc1?q=80&w=164&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="image-3"
-          class="w-full flex-shrink-0 object-contain"
-        />
-      </div>
+    <main class="h-screen flex justify-center items-center flex-col space-y-6">
+      <h1 class="text-2xl font-semibold">Simple Image Carousel</h1>
+      <div class="relative w-full max-w-3xl overflow-hidden">
+        <div
+          id="carousel"
+          class="flex transition-transform duration-500 ease-in-out"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=800&q=80"
+            alt="image-1"
+            class="w-full flex-shrink-0 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=800&q=80"
+            alt="image-2"
+            class="w-full flex-shrink-0 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+            alt="image-3"
+            class="w-full flex-shrink-0 object-cover"
+          />
+        </div>
 
-      <div class="flex gap-4">
         <button
           id="prev"
-          class="text-lg font-medium hover:text-blue-500 cursor-pointer"
+          class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:text-blue-600"
         >
-          <- Prev
+          ◀
         </button>
         <button
           id="next"
-          class="text-lg font-medium hover:text-blue-500 cursor-pointer"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:text-blue-600"
         >
-          Next ->
+          ▶
         </button>
       </div>
     </main>
@@ -55,22 +53,28 @@
 
       let index = 0;
 
-      const handelCarousel = () => {
+      const handleCarousel = () => {
         const width = carousel.clientWidth;
         carousel.style.transform = `translateX(-${index * width}px)`;
       };
 
       next.addEventListener("click", () => {
-        index = Math.min(index + 1, carousel.children.length - 1);
-        handelCarousel();
+        index = (index + 1) % carousel.children.length;
+        handleCarousel();
       });
 
       prev.addEventListener("click", () => {
-        index = Math.min(index - 1, 0);
-        handelCarousel();
+        index =
+          (index - 1 + carousel.children.length) % carousel.children.length;
+        handleCarousel();
       });
 
-      window.addEventListener("resize", handelCarousel);
+      window.addEventListener("resize", handleCarousel);
+
+      //   setInterval(() => {
+      //     index = (index + 1) % carousel.children.length;
+      //     handleCarousel();
+      //   }, 2000);
     </script>
   </body>
 </html>
